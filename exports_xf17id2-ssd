@@ -1,0 +1,27 @@
+#!/bin/bash
+if [ "${1}xx" == "--helpxx" ]; then
+    echo "Usage:  /usr/local/crys-local/sbin/exports_xf17id2-ssd"
+    echo "    attempts to export xf27id2-srv1:/xf17id2 to"
+    echo "    xf17id2-ws2, xf17id2-ws3, xf17id2-ws4 xf17id2-ws10, xf17id2-ca1, "
+    echo "    cpu-002, cpu-003, cpu-004, cpu-005, cpu-013, cpu-014, cpu-015. "
+    echo "    and attempts each mount on /xf17id2-ssd."
+    echo "    Any or all mounts may fail."
+    exit 0
+else
+export PATH=/usr/local/crys-local/sbin:$PATH
+export_xf17id2-ssd xf17id2-ws2 &
+export_xf17id2-ssd xf17id2-ws3 &
+export_xf17id2-ssd xf17id2-ws4 &
+export_xf17id2-ssd xf17id2-ws10 &
+export_xf17id2-ssd xf17id2-ca1 &
+export_xf17id2-ssd cpu-002 &
+export_xf17id2-ssd cpu-003 &
+export_xf17id2-ssd cpu-004 &
+export_xf17id2-ssd cpu-005 &
+export_xf17id2-ssd cpu-013 &
+export_xf17id2-ssd cpu-014 &
+export_xf17id2-ssd cpu-015 &
+echo waiting for completions
+wait
+fi
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ "${1}xx"  == "--helpxx" ]; then
+  echo "Usage:  /usr/local/crys-local/sbin/export_xf17id2-ssd  client_node"
+  echo "    exports xf27id2-srv2:/xf17id2 to client_node and attempts the mount"
+  exit 0
+else
+ssh xf17id2-srv1 "exportfs -v -o mp,rw,sync,insecure,no_subtree_check,no_root_squash,fsid=3 ${1}:/xf17id2-ssd"
+ssh $1 "mkdir -p /xf17id2-ssd"
+ssh $1 "mount xf17id2-srv1:/xf17id2-ssd /xf17id2-ssd"
+fi

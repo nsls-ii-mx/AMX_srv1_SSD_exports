@@ -1,0 +1,26 @@
+#!/bin/bash
+if [ "${1}xx" == "--helpxx" ]; then
+  echo "Usage:  /usr/local/crys-local/unexports_xf17id2-ssd"
+  echo "    attempts to undo the export and mount of "
+  echo "    xf17id2-srv1:/xf17id2-ssd to each of"
+  echo "    xf17id2-ws2, xf17id2-ws3, xf17id2-ws4, xf17id2-ws10, xf17id2-ca1,"
+  echo "    cpu-002, cpu-003, cpu-004, cpu-005, cpu-013, cpu-014, cpu-015."
+  echo "    Any or all of the unexports or unmounts may fail"
+  exit 0
+else
+export PATH=/usr/local/crys-local/sbin:$PATH
+unexport_xf17id2-ssd xf17id2-ws2 &
+unexport_xf17id2-ssd xf17id2-ws3 &
+unexport_xf17id2-ssd xf17id2-ws4 &
+unexport_xf17id2-ssd xf17id2-ws10 &
+unexport_xf17id2-ssd xf17id2-ca1 &
+unexport_xf17id2-ssd cpu-002 &
+unexport_xf17id2-ssd cpu-003 &
+unexport_xf17id2-ssd cpu-004 &
+unexport_xf17id2-ssd cpu-005 &
+unexport_xf17id2-ssd cpu-013 &
+unexport_xf17id2-ssd cpu-014 &
+unexport_xf17id2-ssd cpu-015 &
+echo waiting for completions
+wait
+fi

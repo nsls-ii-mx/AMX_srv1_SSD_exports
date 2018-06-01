@@ -1,0 +1,11 @@
+#!/bin/bash
+if [ "${1}xx" == "--helpxx" ]; then
+  echo "Usage:  /usr/local/crys-local/sbin/unexport_xf17id2-ssd client-node"
+  echo "    attempts to unmount /xf17id2-ssd from client-node"
+  echo "    and attempts to undo the export of xf17id2-srv1:/xf17id2-ssd"
+  echo "    to client-none from xf17id2-srv1"
+  exit 0
+else
+ssh $1 "umount -f /xf17id2-ssd"
+ssh xf17id2-srv1 "exportfs -v -u ${1}:/xf17id2-ssd"
+fi
